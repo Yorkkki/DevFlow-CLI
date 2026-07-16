@@ -2,7 +2,6 @@ from random import random
 from usuario import Usuario
 from proyecto import Proyecto
 import hashlib
-import json
 
 cuentas_registradas = []
 proyectos_registrados = []
@@ -96,7 +95,42 @@ def mostrar_menu():
             )
             proyectos_registrados.append(nuevo_proyecto)
             print(f"¡Proyecto '{nuevo_proyecto.nombre}' creado con éxito!")
+            
+        elif op == 4:
+            if not proyectos_registrados:
+                print("No hay proyectos registrados.")
+            else:
+                print("=== Proyectos Registrados ===")
+                for proyecto in proyectos_registrados:
+                    proyecto.mostrar_proyecto()
         
+        elif op == 5:
+            if not proyectos_registrados:
+                print("No hay proyectos registrados.")
+            else:
+                nombre_buscar_p = input("Escriba el nombre del proyecto que desea buscar: ")
+                for proyecto in proyectos_registrados:
+                    if nombre_proyecto == nombre_buscar_p:
+                        print("Proyecto encontrado!")
+                        proyecto.mostrar_proyecto()
+                    else:
+                        print(f"No hay proyectos registrados con el nombre de: {nombre_buscar_p}")
+        
+        elif op == 6:
+            nombre_buscar_p = input("Escriba el nombre del proyecto que desea editar: ")
+            encontrado = False
+            for i in range (len(proyectos_registrados)):
+                if nombre_buscar_p [i]["nombre"] == nombre_buscar_p:
+                    nombre_nuevo_p = input("Escriba el nombre nuevo que desea ponerle al proyecto: ")
+                    proyectos_registrados[i]["nombre"] = nombre_nuevo_p 
+                    
+                    print("¡Nombre del proyecto actualizado con éxito!")
+                    encontrado = True
+                    break
+                    
+                if not encontrado: 
+                    print("Error: El proyecto no se encuentra registrado.")
+                
         elif op == 22:
             print("Cerrando sesión...")
             break

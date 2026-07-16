@@ -27,6 +27,4 @@ class Proyecto:
         print(f"Fecha de creación: {self.fecha_creacion}")
         print(f"Estado: {self.estado}")
         print(f"Responsable: {self.responsable}")
-        print("Tareas:")
-        for tarea in self.tareas:
-            tarea.mostrar_tarea()
+        print(f"Tareas: {len(self.tareas)}")
