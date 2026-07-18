@@ -1,4 +1,3 @@
-from random import random
 from usuario import Usuario
 from proyecto import Proyecto
 import hashlib
@@ -81,15 +80,14 @@ def mostrar_menu():
         elif op == 3:
             nombre_proyecto = input(f"Escriba el nombre de su proyecto nuevo: ")
             descripcion_p = input(f"Escriba la descripción de su proyecto nuevo: ")
-            fecha_creacion_p = input(f"Escriba la fecha de creación de su proyecto nuevo (formato: dd/mm/aaaa): ")
-            estado_p = input(f"Escriba el estado de su proyecto nuevo (Activo/Inactivo): ")
             responsable_p = input(f"Escriba el nombre del responsable de su proyecto nuevo: ")
             id_proyecto = len(proyectos_registrados) + 1
             nuevo_proyecto = Proyecto(
+                id = id_proyecto,
                 nombre=nombre_proyecto,
                 descripcion= descripcion_p,
-                fecha_creacion= fecha_creacion_p,
-                estado=estado_p,
+                fecha_creacion= None,
+                estado=None,
                 responsable=responsable_p,
                 tareas=[]
             )
@@ -110,7 +108,7 @@ def mostrar_menu():
             else:
                 nombre_buscar_p = input("Escriba el nombre del proyecto que desea buscar: ")
                 for proyecto in proyectos_registrados:
-                    if nombre_proyecto == nombre_buscar_p:
+                    if proyecto.nombre == nombre_buscar_p:
                         print("Proyecto encontrado!")
                         proyecto.mostrar_proyecto()
                     else:
@@ -120,17 +118,48 @@ def mostrar_menu():
             nombre_buscar_p = input("Escriba el nombre del proyecto que desea editar: ")
             encontrado = False
             for i in range (len(proyectos_registrados)):
-                if nombre_buscar_p [i]["nombre"] == nombre_buscar_p:
-                    nombre_nuevo_p = input("Escriba el nombre nuevo que desea ponerle al proyecto: ")
-                    proyectos_registrados[i]["nombre"] = nombre_nuevo_p 
-                    
-                    print("¡Nombre del proyecto actualizado con éxito!")
+                if proyectos_registrados[i].nombre == nombre_buscar_p.strip().lower():
                     encontrado = True
+                    proyecto = proyectos_registrados[i]
+                    
+                    print(f"\n--- Editando Proyecto: {proyecto.nombre} ---")
+                    print("1. Editar Nombre")
+                    print("2. Editar Descripción")
+                    print("3. Editar responsable")
+                    sub_op = input("Seleccione una opción (1-3): ")
+                    
+                    if sub_op == "1":
+                        nuevo_nombre = input("Escriba el nuevo nombre: ")
+                        proyecto.nombre = nuevo_nombre
+                        print("¡Nombre actualizado con éxito!")
+                    elif sub_op == "2":
+                        nueva_desc = input("Escriba la nueva descripción: ")
+                        proyecto.descripcion = nueva_desc
+                        print("¡Descripción actualizada con éxito!")
+                    elif sub_op == "3":
+                        nuevo_responsable = input("Escriba el nuevo responsable: ")
+                        proyecto.responsable = nuevo_responsable
+                        print("¡Responsable actualizado con éxito!")
+                    else:
+                        print("Opción inválida. No se realizaron cambios.")
                     break
                     
-                if not encontrado: 
-                    print("Error: El proyecto no se encuentra registrado.")
+            if not encontrado: 
+                print("Error: El proyecto no se encuentra registrado.")
                 
+        elif op == 7:
+            nombre_buscar_p = input("Escriba el nombre del proyecto que desea eliminar: ")
+            encontrado = False
+            for proyecto in proyectos_registrados:
+                if proyecto.nombre.strip().lower() == nombre_buscar_p.strip().lower():
+                    proyecto_a_eliminar = proyecto
+                    break
+            if proyecto_a_eliminar is not None:
+                proyectos_registrados.remove(proyecto_a_eliminar)
+                print(f"Proyecto '{proyecto_a_eliminar.nombre}' eliminado con éxito.")
+            if not encontrado:
+                print("Error: El proyecto no se encuentra registrado.")
+
         elif op == 22:
             print("Cerrando sesión...")
             break

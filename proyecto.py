@@ -1,9 +1,10 @@
 class Proyecto:
-    def __init__(self, nombre, descripcion, fecha_creacion, estado, responsable, tareas):
+    def __init__(self, id, nombre, descripcion, fecha_creacion, estado , responsable, tareas):
+        self.id = id
         self.nombre = nombre
         self.descripcion = descripcion
         self.fecha_creacion = fecha_creacion
-        self.estado = estado
+        self.estado = "En progreso" 
         self.responsable = responsable
         self.tareas = tareas
     
@@ -22,9 +23,7 @@ class Proyecto:
         return None
 
     def mostrar_proyecto(self):
+        print(f"ID: {self.id}")
         print(f"Nombre: {self.nombre}")
-        print(f"Descripción: {self.descripcion}")
-        print(f"Fecha de creación: {self.fecha_creacion}")
         print(f"Estado: {self.estado}")
         print(f"Responsable: {self.responsable}")
-        print(f"Tareas: {len(self.tareas)}")
