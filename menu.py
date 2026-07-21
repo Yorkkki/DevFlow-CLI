@@ -196,7 +196,7 @@ def mostrar_menu():
                             proyecto_encontrado = None
                             for proyectos in proyectos_registrados:
                                 if proyecto.id == id_proyecto_buscar:
-                                    proyecto_encontrado = proyecto
+                                    proyecto_encontrado = proyectos
                                     break
                             if proyecto_encontrado:
                                 if not proyecto_encontrado.tareas:
@@ -239,7 +239,40 @@ def mostrar_menu():
                                     print("Error: No se encontró ninguna tarea con ese nombre en este proyecto.")
                         else: 
                             print("Error: No se encontró ningún proyecto con ese ID.")
-                            
+                    
+                    elif sub_op == 12:
+                        if not proyectos_registrados:
+                            print("No hay proyectos registrados.")
+                        else:
+                            id_proyecto_buscar = int(input("Ingrese el ID del proyecto donde está la tarea a modificar: "))
+                            proyecto_encontrado = None
+                        
+                        for proyecto in proyectos_registrados:
+                            if proyecto.id == id_proyecto_buscar:
+                                proyecto_encontrado = proyecto
+                                break
+                        if proyecto_encontrado:
+                            if not proyecto_encontrado.tareas:
+                                print(f"El proyecto {proyecto_encontrado.nombre} no tiene tareas.")
+                            else:
+                                nombre_tarea_buscar = input("Escriba el nombre de la tarea que desea modificar: ").strip().lower()
+                                tarea_encontrada = None
+                            for tarea in proyecto_encontrado.tareas:
+                                    if tarea.titulo.strip().lower() == nombre_tarea_buscar:
+                                        tarea_encontrada = tarea
+                                        break
+                            if tarea_encontrada:
+                                print("\n--- Datos actuales de la tarea ---")
+                                tarea_encontrada.mostrar_tarea()
+                                print(f"La tarea es: {tarea_encontrada.mostrartarea()}")
+                                nuevo_titulo = input("Escriba el nuevo titulo de la tarea: ")
+                                tarea_encontrada.titulo = nuevo_titulo
+                                nueva_descripcion = input("Escriba la nueva descripcion de la tarea: ")
+                                tarea_encontrada.descripcion = nueva_descripcion
+                                print(f"¡Tarea '{tarea_encontrada.nombre}' actualizada con éxito!")
+                            else:
+                                print("Error: No se encontró ninguna tarea con ese nombre en este proyecto.")
+                        
                     elif sub_op == 22:
                         print("Cerrando sesión...")
                         break
