@@ -26,19 +26,19 @@ def mostrar_menu():
                 usuario_encontrado.mostrar_datos()
                 while True:
                     print("===== PROYECTOS =====")
-                    print("3. Crear proyecto")
-                    print("4. Ver proyectos")
-                    print("5. Buscar proyecto")
-                    print("6. Editar proyecto")
-                    print("7. Eliminar proyecto")
+                    print("1. Crear proyecto")
+                    print("2. Ver proyectos")
+                    print("3. Buscar proyecto")
+                    print("4. Editar proyecto")
+                    print("5. Eliminar proyecto")
                     print("")
                     print("===== TAREAS =====")
-                    print("8. Crear tarea")
-                    print("9. Ver tareas")
-                    print("10. Buscar tarea")
-                    print("11. Cambiar estado de tarea")
-                    print("12. Editar tarea")
-                    print("13. Eliminar tarea")
+                    print("6. Crear tarea")
+                    print("7. Ver tareas")
+                    print("8. Buscar tarea")
+                    print("9. Cambiar estado de tarea")
+                    print("10. Editar tarea")
+                    print("11. Eliminar tarea")
                     print("")
                     print("===== COMENTARIOS =====")
                     print("14. Agregar comentario")
@@ -59,7 +59,7 @@ def mostrar_menu():
                     
                     sub_op = int(input("Seleccione una opción: "))
                     
-                    if sub_op == 3:
+                    if sub_op == 1:
                         nombre_proyecto = input(f"Escriba el nombre de su proyecto nuevo: ")
                         descripcion_p = input(f"Escriba la descripción de su proyecto nuevo: ")
                         responsable_p = input(f"Escriba el nombre del responsable de su proyecto nuevo: ")
@@ -76,7 +76,7 @@ def mostrar_menu():
                         proyectos_registrados.append(nuevo_proyecto)
                         print(f"¡Proyecto '{nuevo_proyecto.nombre}' creado con éxito!")
                         
-                    elif sub_op == 4:
+                    elif sub_op == 2:
                         if not proyectos_registrados:
                             print("No hay proyectos registrados.")
                         else:
@@ -84,7 +84,7 @@ def mostrar_menu():
                             for proyecto in proyectos_registrados:
                                 proyecto.mostrar_proyecto()
                     
-                    elif sub_op == 5:
+                    elif sub_op == 3:
                         if not proyectos_registrados:
                             print("No hay proyectos registrados.")
                         else:
@@ -96,7 +96,7 @@ def mostrar_menu():
                                 else:
                                     print(f"No hay proyectos registrados con el nombre de: {nombre_buscar_p}")
                     
-                    elif sub_op == 6:
+                    elif sub_op == 4:
                         nombre_buscar_p = input("Escriba el nombre del proyecto que desea editar: ")
                         encontrado = False
                         for i in range (len(proyectos_registrados)):
@@ -129,7 +129,7 @@ def mostrar_menu():
                         if not encontrado: 
                             print("Error: El proyecto no se encuentra registrado.")
                             
-                    elif sub_op == 7:
+                    elif sub_op == 5:
                         nombre_buscar_p = input("Escriba el nombre del proyecto que desea eliminar: ")
                         encontrado = False
                         for proyecto in proyectos_registrados:
@@ -142,7 +142,7 @@ def mostrar_menu():
                         if not encontrado:
                             print("Error: El proyecto no se encuentra registrado.")
 
-                    elif sub_op == 8:
+                    elif sub_op == 6:
                         if not proyectos_registrados:
                             print("No hay proyectos registrados.")
                         else:
@@ -170,7 +170,7 @@ def mostrar_menu():
                                 proyecto_encontrado.tareas.append(nueva_tarea)
                                 print(f"Tarea '{nombre_tarea}' agregada al proyecto '{proyecto_encontrado.nombre}' con éxito.")
                                 
-                    elif sub_op == 9:
+                    elif sub_op == 7:
                         if not proyectos_registrados:
                             print("No hay proyectos registrados.")
                         else:
@@ -188,7 +188,7 @@ def mostrar_menu():
                                     for tarea in proyecto_encontrado.tareas:
                                         print(f"- {tarea['nombre']}: {tarea['descripcion']} (Responsable: {tarea['responsable']}, Estado: {tarea['estado']})")
 
-                    elif sub_op == 10:
+                    elif sub_op == 8:
                         if not proyectos_registrados:
                             print("No hay proyectos registrados.")
                         else: 
@@ -208,7 +208,7 @@ def mostrar_menu():
                             else:
                                 print("Error: No se encontró ningún proyecto con ese ID.")
                     
-                    elif sub_op == 11:
+                    elif sub_op == 9:
                         if not proyectos_registrados:
                             print("No hay proyectos registrados.")
                         else:
@@ -240,7 +240,7 @@ def mostrar_menu():
                         else: 
                             print("Error: No se encontró ningún proyecto con ese ID.")
                     
-                    elif sub_op == 12:
+                    elif sub_op == 10:
                         if not proyectos_registrados:
                             print("No hay proyectos registrados.")
                         else:
