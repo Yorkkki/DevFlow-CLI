@@ -128,7 +128,7 @@ def mostrar_menu():
                                 
                         if not encontrado: 
                             print("Error: El proyecto no se encuentra registrado.")
-                            
+                    
                     elif sub_op == 5:
                         nombre_buscar_p = input("Escriba el nombre del proyecto que desea eliminar: ")
                         encontrado = False
@@ -169,7 +169,7 @@ def mostrar_menu():
                                 }
                                 proyecto_encontrado.tareas.append(nueva_tarea)
                                 print(f"Tarea '{nombre_tarea}' agregada al proyecto '{proyecto_encontrado.nombre}' con éxito.")
-                                
+                    
                     elif sub_op == 7:
                         if not proyectos_registrados:
                             print("No hay proyectos registrados.")
@@ -272,7 +272,33 @@ def mostrar_menu():
                                 print(f"¡Tarea '{tarea_encontrada.nombre}' actualizada con éxito!")
                             else:
                                 print("Error: No se encontró ninguna tarea con ese nombre en este proyecto.")
-                        
+                    
+                    elif sub_op == 11:
+                        if not proyectos_registrados:
+                            print("No hay proyectos registrados.")
+                        else:
+                            id_proyecto_buscar = int(input("Ingrese el ID del proyecto donde está la tarea a eliminar: "))
+                            proyecto_encontrado = None
+                            for proyecto in proyectos_registrados:
+                                if proyecto.id == id_proyecto_buscar:
+                                    proyecto_encontrado = proyecto
+                                    break
+                            if proyecto_encontrado:
+                                if not proyecto_encontrado.tareas:
+                                    print(f"El proyecto {proyecto_encontrado.nombre} no tiene tareas.")
+                                else:
+                                    nombre_tarea_buscar = input("Escriba el nombre de la tarea que desea eliminar: ").strip().lower()
+                                    tarea_a_eliminar = None
+                                    for tarea in proyecto_encontrado.tareas:
+                                        if tarea.nombre.strip().lower() == nombre_tarea_buscar:
+                                            tarea_a_eliminar = tarea
+                                            break
+                                    if tarea_a_eliminar is not None:
+                                        proyecto_encontrado.tareas.remove(tarea_a_eliminar)
+                                        print(f"Tarea '{tarea_a_eliminar.nombre}' eliminada con éxito del proyecto '{proyecto_encontrado.nombre}'.")
+                                    else:
+                                        print("Error: No se encontró ninguna tarea con ese nombre en este proyecto")       
+                    
                     elif sub_op == 22:
                         print("Cerrando sesión...")
                         break
