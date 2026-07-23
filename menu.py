@@ -41,20 +41,20 @@ def mostrar_menu():
                     print("11. Eliminar tarea")
                     print("")
                     print("===== COMENTARIOS =====")
-                    print("14. Agregar comentario")
-                    print("15. Ver comentarios")
+                    print("12. Agregar comentario")
+                    print("13. Ver comentarios")
                     print("")
                     print("===== REPORTES =====")
-                    print("16. Ver tareas pendientes")
-                    print("17. Ver tareas completadas")
-                    print("18. Ver proyectos activos")
-                    print("19. Estadisticas")
+                    print("14. Ver tareas pendientes")
+                    print("15. Ver tareas completadas")
+                    print("16. Ver proyectos activos")
+                    print("17. Estadisticas")
                     print("")
                     print("===== SISTEMA =====")
-                    print("20. Guardar datos")
-                    print("21. Cargar datos")
-                    print("22. Cerrar sesión")
-                    print("23. Salir")
+                    print("18. Guardar datos")
+                    print("19. Cargar datos")
+                    print("20. Cerrar sesión")
+                    print("21. Salir")
                     print("============")
                     
                     sub_op = int(input("Seleccione una opción: "))
@@ -299,10 +299,10 @@ def mostrar_menu():
                                     else:
                                         print("Error: No se encontró ninguna tarea con ese nombre en este proyecto")       
                     
-                    elif sub_op == 22:
+                    elif sub_op == 20:
                         print("Cerrando sesión...")
                         break
-                    elif sub_op == 23:
+                    elif sub_op == 21:
                         print("Saliendo del programa...")
                         exit()
                     else:
