@@ -1,3 +1,5 @@
+from matplotlib.pylab import rint
+
 from usuario import Usuario
 from proyecto import Proyecto
 import hashlib
@@ -360,6 +362,32 @@ def mostrar_menu():
                             else:
                                 print("Error: No se encontró ningún proyecto con ese ID.")
                     
+                    elif sub_op == 14:
+                        if not proyectos_registrados:
+                            print("No hay proyectos registrados.")
+                        else:
+                            print("=== Tareas Pendientes ===")
+                            for proyecto in proyectos_registrados:
+                                for tarea in proyecto.tareas:
+                                    if tarea.estado.strip().lower() == "pendiente":
+                                        print(f"- Proyecto: {proyecto.nombre}, Tarea: {tarea.titulo}, Responsable: {tarea.responsable}")
+                    elif sub_op == 15:
+                        if not proyectos_registrados:
+                            print("No hay proyectos registrados.")
+                        else:
+                            print("=== Tareas Completadas ===")
+                            for proyecto in proyectos_registrados:
+                                for tarea in proyecto.tareas:
+                                    if tarea.estado.strip().lower() == "completada":
+                                        print(f"- Proyecto: {proyecto.nombre}, Tarea: {tarea.titulo}, Responsable: {tarea.responsable}")
+                    elif sub_op == 16:
+                        if not proyectos_registrados:
+                            print("No hay proyectos registrados.")
+                        else:
+                            print("=== Proyectos Activos ===")
+                            for proyecto in proyectos_registrados:
+                                if proyecto.estado.strip().lower() == "activo":
+                                    print(f"- Proyecto: {proyecto.nombre}, Responsable: {proyecto.responsable}")
                     elif sub_op == 20:
                         print("Cerrando sesión...")
                         break
