@@ -462,6 +462,50 @@ def mostrar_menu():
                             print("¡Datos guardados con éxito en 'datos_sistema.json'!")
                         except Exception as e:
                             print(f"Ocurrió un error al guardar los datos: {e}")
+                    
+                    elif sub_op == 19:
+                        print("Cargando datos...")
+                        try:
+                            with open("datos_sistema.json", "r", encoding="utf-8") as archivo:
+                                datos_cargados = json.load(archivo)
+                            cuentas_registradas.clear()
+                            for u in datos_cargados.get("usuarios", []):
+                                usuario = Usuario(
+                                    id=u["id"],
+                                    nombre=u["nombre"],
+                                    correo=u["correo"],
+                                    password_hash=u["password_hash"],
+                                    rol=u["rol"]
+                                )
+                                cuentas_registradas.append(usuario)
+                            proyectos_registrados.clear()
+                            for p in datos_cargados.get("proyectos", []):
+                                proyecto = Proyecto(
+                                    id=p["id"],
+                                    nombre=p["nombre"],
+                                    descripcion=p["descripcion"],
+                                    fecha_creacion=p.get("fecha_creacion"),
+                                    estado=p.get("estado"),
+                                    responsable=p.get("responsable"),
+                                    tareas=[]
+                                )
+                                for t in p.get("tareas", []):
+                                    tarea = {
+                                        "id": t["id"],
+                                        "titulo": t["titulo"],
+                                        "prioridad": t.get("prioridad"),
+                                        "estado": t.get("estado"),
+                                        "fecha_limite": t.get("fecha_limite"),
+                                        "horas": t.get("horas"),
+                                        "comentarios": t.get("comentarios", [])
+                                    }
+                                    proyecto.tareas.append(tarea)
+                                proyectos_registrados.append(proyecto)
+                            print("¡Datos cargados con éxito desde 'datos_sistema.json'!")
+                        except FileNotFoundError:
+                            print("No se encontró el archivo 'datos_sistema.json'. Asegúrese de guardarlo primero.")
+                        except Exception as e:
+                            print(f"Ocurrió un error al cargar los datos: {e}")
                     elif sub_op == 20:
                         print("Cerrando sesión...")
                         break
