@@ -1,5 +1,6 @@
 from matplotlib.pylab import rint
 
+from tarea import Tarea
 from usuario import Usuario
 from proyecto import Proyecto
 import hashlib
@@ -162,14 +163,7 @@ def mostrar_menu():
                                 responsable_tarea = input("Ingrese el nombre del responsable de la tarea: ")
                                 estado_tarea = input("Ingrese el estado de la tarea (pendiente/completada): ")
                                 id_tarea = len(proyecto_encontrado.tareas) + 1
-                                nueva_tarea = {
-                                    "id": id_tarea,
-                                    "nombre": nombre_tarea,
-                                    "descripcion": descripcion_tarea,
-                                    "responsable": responsable_tarea,
-                                    "estado": estado_tarea,
-                                    "comentarios": []
-                                }
+                                nueva_tarea = Tarea(id_tarea, nombre_tarea, descripcion_tarea, None, estado_tarea, None, None, [])
                                 proyecto_encontrado.tareas.append(nueva_tarea)
                                 print(f"Tarea '{nombre_tarea}' agregada al proyecto '{proyecto_encontrado.nombre}' con éxito.")
                     
@@ -189,7 +183,7 @@ def mostrar_menu():
                                 else:
                                     print(f"=== Tareas del Proyecto: {proyecto_encontrado.nombre} ===")
                                     for tarea in proyecto_encontrado.tareas:
-                                        print(f"- {tarea['nombre']}: {tarea['descripcion']} (Responsable: {tarea['responsable']}, Estado: {tarea['estado']})")
+                                        print(f"- {tarea.titulo}: {tarea.descripcion},Estado: {tarea.estado})")
                     
                     elif sub_op == 8:
                         if not proyectos_registrados:
@@ -207,7 +201,7 @@ def mostrar_menu():
                                 else: 
                                     print(f"=== Tareas del Proyecto: {proyecto_encontrado.nombre} ===")
                                     for tarea in proyecto_encontrado.tareas:
-                                        print(f"- {tarea.nombre}: {tarea.descripcion} (Responsable: {tarea.responsable}, Estado: {tarea.estado})")
+                                        print(f"- {tarea.titulo}: {tarea.descripcion},Estado: {tarea.estado})")
                             else:
                                 print("Error: No se encontró ningún proyecto con ese ID.")
                     
@@ -426,6 +420,7 @@ def mostrar_menu():
                                 tareas_del_proyecto.append({
                                     "id": t.id,
                                     "titulo": t.titulo,
+                                    "descripcion": t.descripcion,
                                     "prioridad": t.prioridad,
                                     "estado": t.estado,
                                     "fecha_limite": t.fecha_limite,
@@ -490,15 +485,17 @@ def mostrar_menu():
                                     tareas=[]
                                 )
                                 for t in p.get("tareas", []):
-                                    tarea = {
-                                        "id": t["id"],
-                                        "titulo": t["titulo"],
-                                        "prioridad": t.get("prioridad"),
-                                        "estado": t.get("estado"),
-                                        "fecha_limite": t.get("fecha_limite"),
-                                        "horas": t.get("horas"),
-                                        "comentarios": t.get("comentarios", [])
-                                    }
+                                    tarea = Tarea(
+                                        id=t["id"],
+                                        titulo=t["titulo"],
+                                        descripcion=t.get("descripcion"),
+                                        prioridad=t.get("prioridad"),
+                                        estado=t.get("estado"),
+                                        fecha_limite=t.get("fecha_limite"),
+                                        horas=t.get("horas"),
+                                        comentarios=t.get("comentarios", [])
+                                    )
+                                    
                                     proyecto.tareas.append(tarea)
                                 proyectos_registrados.append(proyecto)
                             print("¡Datos cargados con éxito desde 'datos_sistema.json'!")
