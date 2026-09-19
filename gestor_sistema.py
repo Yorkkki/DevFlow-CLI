@@ -1,5 +1,8 @@
 from utils import *
-from menu import *
+from usuario import *
+from proyecto import *
+from tarea import *
+import json
 def menu_sistema(cuentas_registradas, proyectos_registrados, sub_op):
     if sub_op == 18:
         print("Guardando datos...")
@@ -20,6 +23,7 @@ def menu_sistema(cuentas_registradas, proyectos_registrados, sub_op):
                     "id": t.id,
                     "titulo": t.titulo,
                     "descripcion": t.descripcion,
+                    "responsable": t.responsable,
                     "prioridad": t.prioridad,
                     "estado": t.estado,
                     "fecha_limite": t.fecha_limite,
@@ -30,9 +34,9 @@ def menu_sistema(cuentas_registradas, proyectos_registrados, sub_op):
             "id": p.id,
             "nombre": p.nombre,
             "descripcion": p.descripcion,
+            "responsable": p.responsable,
             "fecha_creacion": p.fecha_creacion,
             "estado": p.estado,
-            "responsable": p.responsable,
             "tareas": tareas_del_proyecto
         })
         datos_totales = {
@@ -68,9 +72,9 @@ def menu_sistema(cuentas_registradas, proyectos_registrados, sub_op):
                     id=p["id"],
                     nombre=p["nombre"],
                     descripcion=p["descripcion"],
+                    responsable=p.get("responsable"),
                     fecha_creacion=p.get("fecha_creacion"),
                     estado=p.get("estado"),
-                    responsable=p.get("responsable"),
                     tareas=[]
                 )
                 for t in p.get("tareas", []):
@@ -78,6 +82,7 @@ def menu_sistema(cuentas_registradas, proyectos_registrados, sub_op):
                         id=t["id"],
                         titulo=t["titulo"],
                         descripcion=t.get("descripcion"),
+                        responsable=t.get("responsable"),
                         prioridad=t.get("prioridad"),
                         estado=t.get("estado"),
                         fecha_limite=t.get("fecha_limite"),

@@ -1,8 +1,9 @@
 class Tarea:
-    def __init__(self, id, titulo, descripcion, prioridad, estado, fecha_limite, horas, comentarios):
+    def __init__(self, id, titulo, descripcion, responsable, prioridad, estado, fecha_limite, horas, comentarios):
         self.id = id
         self.titulo = titulo
         self.descripcion = descripcion
+        self.responsable = responsable
         self.prioridad = prioridad
         self.estado = estado
         self.fecha_limite = fecha_limite

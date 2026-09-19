@@ -1,6 +1,5 @@
 from utils import *
-from menu import *
-def menu_reportes(proyectos_registrados, sub_op):
+def menu_reportes(proyectos_registrados, cuentas_registradas, sub_op):
     if sub_op == 14:
         if not proyectos_registrados:
             print("No hay proyectos registrados.")

@@ -18,9 +18,11 @@ def menu_tareas(proyectos_registrados, sub_op):
                 responsable_tarea = input("Ingrese el nombre del responsable de la tarea: ")
                 estado_tarea = input("Ingrese el estado de la tarea (pendiente/completada): ")
                 id_tarea = len(proyecto_encontrado.tareas) + 1
-                nueva_tarea = Tarea(id_tarea, nombre_tarea, descripcion_tarea, None, estado_tarea, None, None, [])
+                nueva_tarea = Tarea(id_tarea, nombre_tarea, descripcion_tarea, responsable_tarea, None, estado_tarea, None, None, [])
                 proyecto_encontrado.tareas.append(nueva_tarea)
                 print(f"Tarea '{nombre_tarea}' agregada al proyecto '{proyecto_encontrado.nombre}' con éxito.")
+            else:
+                print(f"No se encontró ningún proyecto con el nombre '{nombre_proyecto}'.")
     
     elif sub_op == 7:
         if not proyectos_registrados:

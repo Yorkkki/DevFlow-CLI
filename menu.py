@@ -1,7 +1,5 @@
 from matplotlib.pylab import rint
-from tarea import Tarea
 from usuario import Usuario
-from proyecto import Proyecto
 from gestor_proyectos import menu_proyectos
 from gestor_tareas import menu_tareas
 from gestor_comentarios import menu_comentarios
@@ -91,7 +89,7 @@ def mostrar_menu():
                         menu_comentarios(proyectos_registrados, sub_op)
                     
                     elif sub_op in range(14, 18):
-                        menu_reportes(proyectos_registrados, sub_op)
+                        menu_reportes(proyectos_registrados, cuentas_registradas, sub_op)
                         
                     elif sub_op in range(18, 22):
                         menu_sistema(cuentas_registradas, proyectos_registrados, sub_op)
@@ -99,7 +97,6 @@ def mostrar_menu():
                             break  # Salir del bucle para cerrar sesión
                         elif sub_op == 21:
                             exit()  # Salir del programa
-                    
             else:
                 print("Correo o contraseña incorrectos.")
         
@@ -126,5 +123,5 @@ def mostrar_menu():
                 password_hash = password_encriptada,
                 rol = "Usuario"
                 )
-            cuentas_registradas.append(nuevo_usuario)
-            print(f"¡Usuario registrado con éxito! Tu ID asignado es: {nuevo_usuario.id}")
+                cuentas_registradas.append(nuevo_usuario)
+                print(f"¡Usuario registrado con éxito! Tu ID asignado es: {nuevo_usuario.id}")

@@ -47,7 +47,7 @@ def menu_proyectos(proyectos_registrados, sub_op):
         nombre_buscar_p = input("Escriba el nombre del proyecto que desea editar: ")
         encontrado = False
         for i in range (len(proyectos_registrados)):
-            if proyectos_registrados[i].nombre == nombre_buscar_p.strip().lower():
+            if proyectos_registrados[i].nombre.strip().lower() == nombre_buscar_p.strip().lower():
                 encontrado = True
                 proyecto = proyectos_registrados[i]
                 
