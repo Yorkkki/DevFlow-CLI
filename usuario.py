@@ -16,6 +16,9 @@ class Usuario:
     def verificar_password(self, password):
         return self.__password_hash == self.__generar_hash(password)
     
+    def obtener_password_hash(self):
+        return self.__password_hash
+    
     def cambiar_nombre(self, nuevo_nombre):
         self.nombre = nuevo_nombre
     
